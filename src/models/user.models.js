@@ -68,7 +68,7 @@ const userSchema= new Schema(
 userSchema.pre("save", async function(next){
 
     // if not udating the filed if not password so no need to go inside the function 
-
+// fixed in rgistration vedio
     if(!this.modified("password")) return next()
 
     this.password = bcrypt.hash(this.password,10)
