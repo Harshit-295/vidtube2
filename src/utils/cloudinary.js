@@ -19,6 +19,7 @@ const uploadOnCloundinary = async (localFilePath) =>{
         //         api_key:  process.env.CLOUDINARY_API_KEY, 
         //         api_secret:  process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
         // })
+        console.log(localFilePath)
         if(!localFilePath) return null
         const response = await cloudinary.uploader.upload(
             localFilePath,{
@@ -30,6 +31,7 @@ const uploadOnCloundinary = async (localFilePath) =>{
         fs.unlinkSync(localFilePath)
         return response
     }catch(error){
+        console.log(error)
         fs.unlinkSync(localFilePath)
         return null
     }

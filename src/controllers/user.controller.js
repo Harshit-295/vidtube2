@@ -72,6 +72,7 @@ try {
    
  } catch (error) {
     console.log("user creation failed")
+    console.log(error)
     if(avatar){
         await deleteFromCloudinary(avatar.public_id)
     }
