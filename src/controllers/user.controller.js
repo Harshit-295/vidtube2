@@ -21,17 +21,17 @@ const registerUser = asynchandler(async (req,res)=>{
         throw new ApiError(409,"User with email or username already exists")
     }
     const avatarLocalPath = req.files?.avatar?.[0]?.path
-    const coverLocalPath = req.files?.coverImage[0]?.path
-    // if(!avatarLocalPath){
-    //     throw new ApiError(400,"avatar file is missing")
-    // }
+    const coverLocalPath = req.files?.coverImage?.[0]?.path
+    if(!avatarLocalPath){
+        throw new ApiError(400,"avatar file is missing")
+    }
 
     // const avatar = await uploadOnCloundinary(avatarLocalPath)
     // const coverImage = ""
     // if(coverLocalPath){
     //     const coverImage = await uploadOnCloundinary(coverLocalPath)
     // }
-
+    let avatar;
     try{
         avatar = await uploadOnCloundinary(avatarLocalPath)
         console.log("Upload avatar",avatar)
