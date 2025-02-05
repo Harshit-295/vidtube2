@@ -19,19 +19,18 @@ const uploadOnCloundinary = async (localFilePath) =>{
         //         api_key:  process.env.CLOUDINARY_API_KEY, 
         //         api_secret:  process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
         // })
-        console.log(localFilePath)
+        console.log(localFilePath,"path")
         if(!localFilePath) return null
         const response = await cloudinary.uploader.upload(
             localFilePath,{
                 resource_type:"auto"
             }
         )
-        console.log("file uploaded Cloundinary , File src " ,response.url)
+        console.log("file uploaded Cloundinary , File src " ,response)
         // once the file uploaded we should dlete it from our server
         fs.unlinkSync(localFilePath)
         return response
     }catch(error){
-        console.log(error)
         fs.unlinkSync(localFilePath)
         return null
     }

@@ -15,5 +15,6 @@ router.route("/register").post(
         },
 
     ]),
+    // upload.single("avatar"),
     registerUser)
 export default router

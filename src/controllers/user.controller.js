@@ -50,7 +50,7 @@ const registerUser = asynchandler(async (req,res)=>{
     }
 
 try {
-       const user=User.create({
+       const user= await User.create({
            fullname,
            avatar:avatar.url,
            coverImage:coverImage?.url||"",
@@ -60,7 +60,7 @@ try {
        })
    
        const createdUser = await User.findById(user._id).select(
-           "-password - refreshToken"
+           "password"
        )
        if(!createdUser){
            throw new ApiError(500,"Something went wrongwhile register a user")
